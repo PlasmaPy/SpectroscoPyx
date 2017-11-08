@@ -56,6 +56,11 @@ def bragg_angle(d_lattice, wavelength, order=1):
 
     Example
     -------
+    >>> from astropy import units as u
+    >>> wavelength = 4.188655 * u.angstrom
+    >>> d_lattice = 0.6708 / 2 * u.nm
+    >>> bragg_angle(d_lattice, wavelength)
+    <Quantity 0.6743974698099433 rad>
     
 
     """
