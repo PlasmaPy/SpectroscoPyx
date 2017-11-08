@@ -17,6 +17,17 @@ Goals include:
 * Generating tools convenient for common tasks in simulation and analysis of spectroscopic data
 * Creating a spectroscopic simulation suite which can use the aforementioned interfaces to readily compare spectra generated using different databases
 
+We created a guide on
+[contributing to SpectroscoPy](CONTRIBUTING.md) and have a [code of conduct](CODE_OF_CONDUCT.md).
+New contributors are very welcome! 
+
+## Installation
+
+We're not on PyPI or Conda yet, but we're working on it!
+
+To install the development verison follow the [contribution guidelines](CONTRIBUTING.md).
+
+Like most scientific Python packages, PlasmaPy probably runs best on the [Anaconda distribution](https://www.anaconda.com/downloads).
 
 SpectroscoPy requires Python 3.6 and is
 [not compatible with Python 2](https://pythonclock.org/).
