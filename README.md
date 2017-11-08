@@ -1,7 +1,7 @@
 # SpectroscoPy
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](./LICENSE.md)
-[![Build Status](https://travis-ci.org/PlasmaPy/PlasmaPy.svg?branch=master)](https://travis-ci.org/PlasmaPy/PlasmaPy)
-[![Coverage Status](https://coveralls.io/repos/github/PlasmaPy/PlasmaPy/badge.svg?branch=master)](https://coveralls.io/github/PlasmaPy/PlasmaPy?branch=master)
+[![Build Status](https://travis-ci.org/PlasmaPy/SpectroscoPy.svg?branch=master)](https://travis-ci.org/PlasmaPy/SpectroscoPy)
+[![Coverage Status](https://coveralls.io/repos/github/PlasmaPy/SpectroscoPy/badge.svg?branch=master)](https://coveralls.io/github/PlasmaPy/SpectroscoPy?branch=master)
 
 An open source community developed Python 3.6+ package for spectroscopy in 
 the early stages of development. SpectroscoPy intends to be for spectroscopy what
