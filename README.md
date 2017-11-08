@@ -21,6 +21,8 @@ We created a guide on
 [contributing to SpectroscoPy](CONTRIBUTING.md) and have a [code of conduct](CODE_OF_CONDUCT.md).
 New contributors are very welcome! 
 
+We are in the process of writing [online documentation](http://spectroscopy.readthedocs.io/en/latest/).
+
 ## Installation
 
 We're not on PyPI or Conda yet, but we're working on it!
