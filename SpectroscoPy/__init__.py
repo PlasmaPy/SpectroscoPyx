@@ -34,7 +34,7 @@ def _check_numpy_version():  # coveralls: ignore
         pass
 
     if not required_version:
-        ver_error = ("Numpy {} or above is required for PlasmaPy. The "
+        ver_error = ("Numpy {} or above is required for SpectroscoPy. The "
                      "currently installed version is {}"
                      ).format(__minimum_numpy_version__, np_ver)
         raise ImportError(ver_error)
@@ -54,25 +54,19 @@ def _check_astropy_version():  # coveralls: ignore
         pass
 
     if not required_version:
-        ver_error = ("Astropy {} or above is required for PlasmaPy. The "
+        ver_error = ("Astropy {} or above is required for SpectroscoPy. The "
                      "currently installed version is {}"
                      ).format(__minimum_astropy_version__, ap_ver)
         raise ImportError(ver_error)
 
 
 if (sys.version_info < _split_version(__minimum_python_version__)):  # coveralls: ignore
-    warnings.warn("PlasmaPy does not support Python 3.5 and below")
+    warnings.warn("SpectroscoPy does not support Python 3.5 and below")
 
 _check_numpy_version()
 _check_astropy_version()
 
 try:
-    from .classes import Plasma
-    from . import classes
-    from . import constants
-    from . import atomic
-    from . import math
-    from . import physics
-    from . import utils
+    pass # add subpackages here
 except ImportError:  # coveralls: ignore
-    raise ImportError("Unable to load PlasmaPy subpackages.")
+    raise ImportError("Unable to load SpectroscoPy subpackages.")
