@@ -11,7 +11,7 @@ and researchers globally, running within and leveraging the open source
 scientific Python ecosystem. 
 
 Goals include:
-* Creating a generalized syntax for describing atomic energy levels and trasnsitions
+* Creating a generalized syntax for describing atomic energy levels and transitions
 * Creating a single interface for multiple spectroscopic databases (e.g., NIST, CHIANTI), opacity databases, and lineshape databases
 * Maintaining a system of unique identifiers to precisely share and cite which databases and versions were used for a particular analysis run
 * Generating tools convenient for common tasks in simulation and analysis of spectroscopic data
