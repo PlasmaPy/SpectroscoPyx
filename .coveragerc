@@ -4,6 +4,7 @@ omit =
 	*/tests/*
 	astropy_helpers/*
 	ah_bootstrap.py
+	SpectroscoPy/_astropy_init.py
 exclude_lines = 
 	coveralls: ignore
 	def __repr__
