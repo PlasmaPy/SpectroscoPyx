@@ -61,3 +61,6 @@ distribute-*.tar.gz
 
 # Linux directory files
 *.directory
+
+# spyder project directory
+.spyproject
