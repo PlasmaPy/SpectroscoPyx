@@ -264,8 +264,33 @@ testSubshell = SubshellConfiguration(principalNum=2,
                                      aziNum=1,
                                      electronsNum=5)
 print(testSubshell)
+
+
+#%% term symbol
+
+class TermSymbol():
+    """
+    """
+    def __init__(self):
+        """
+        """
+    def __str__(self):
+        """
+        """
+        # spin state (e.g. doublet, triplet). This becomes the superscript
+        
+        # azimuthal quantum number, L. This becomes the letter symbol
+        
+        # total angular momentum quantum number, J. This becomes the
+        # subscript.
     
+
 #%% full electron configurations
+
+# One way to describe the electron configuration is as a collection of
+# subshell configurations. Undefined subshells are considered empty.
+# Could add function to subshell configuration to define and populate
+# the object by using spectroscopic notation.
 
 class ElectronConfiguration():
     """
@@ -275,7 +300,7 @@ class ElectronConfiguration():
     def __init__(self):
         """
         """
-    def display(self):
+    def __str__(self):
         """
         """
 
@@ -292,9 +317,6 @@ class EnergyLevel():
     def __init__(self, electronConfiguration, termSymbol):
         """
         """
-    def null():
-        """
-        """
-    def display(self):
+    def __str__(self):
         """
         """
