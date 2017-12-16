@@ -37,7 +37,7 @@ def shellElectrons(n):
     Given principal quantum number, n, return maximum number of electrons
     contained in shell n.
     """
-    return 2*n**2
+    return 2 * n**2
 
 
 # magnetic quantum number (defines specific orbital within subshell)
@@ -103,7 +103,7 @@ elif nElec > 2l+1:
 
 # fine structure splitting is due to spin-orbit coupling of electron
 
-# hyperfine structure splitting (would need to include magnetic dipole 
+# hyperfine structure splitting (would need to include magnetic dipole
 # moment of the nucleus)
 
 
@@ -128,16 +128,13 @@ xrayNotation = ['K',
                 'Y',
                 'Z',
                 ]
-principals = np.arange(0,len(xrayNotation)) + 1
+principals = np.arange(0, len(xrayNotation)) + 1
 # constructing dataframe for converting x-ray notation symbols to
 # principal quantum numbers
 xrayShellsDf = pd.DataFrame(data=principals, index=xrayNotation, columns=['n'])
 # example looking up number using symbol, in this case looking up
 # shell 'M'
 print(xrayShellsDf['n']['M'])
-
-
-
 
 
 symbols = ['s',
@@ -162,7 +159,7 @@ symbols = ['s',
            'y',
            'z',
            ]
-azis = np.arange(0,len(symbols))
+azis = np.arange(0, len(symbols))
 
 # constructing dataframe for converting spdf symbols to azimuthal quantum
 # number and back again
@@ -178,10 +175,12 @@ print(subshellsDf['sym'][3])
 
 #%% subshell configurations
 
+
 class SubshellConfiguration():
     """
     Object for describing atomic subshells containing electrons.
     """
+
     def __init__(self, principalNum, aziNum, electronsNum):
         """
         Populating a specific subshell, described by principal quantum
@@ -206,21 +205,25 @@ class SubshellConfiguration():
                              f"which is more than maximum, {maxElectrons}.")
         # assign electrons
         self.electrons = electronsNum
+
     def n(self):
         """
         return principal quantum number.
         """
         return self.principal
+
     def l(self):
         """
         return azimuthal quantum number.
         """
         return self.aziNum
+
     def elec(self):
         """
         return number of electrons in subshell.
         """
         return self.electrons
+
     def __str__(self):
         """
         Displays subshell configuration in standard spectroscopic notation.
@@ -233,6 +236,7 @@ class SubshellConfiguration():
         # concatenating
         subshellSym = principalSym + aziSym + electronsSym
         return subshellSym
+
     def existsSubshell(self, principal=np.nan, aziNum=np.nan):
         """
         Checks if azimuthal quantum number (subshell) exists within the
@@ -248,6 +252,7 @@ class SubshellConfiguration():
             raise ValueError(f"Azimuthal number {aziNum} does not exist "
                              f"for principal quantum number {principal}.")
         return
+
     def subshellElectrons(self, aziNum=np.nan):
         """
         Given azimuthal quantum number, return maximum number of electrons
@@ -258,6 +263,7 @@ class SubshellConfiguration():
         if np.isnan(aziNum):
             aziNum = self.aziNum
         return 2 * (2 * aziNum + 1)
+
 
 # testing subshell class
 testSubshell = SubshellConfiguration(principalNum=2,
@@ -271,19 +277,21 @@ print(testSubshell)
 class TermSymbol():
     """
     """
+
     def __init__(self):
         """
         """
+
     def __str__(self):
         """
         """
         # spin state (e.g. doublet, triplet). This becomes the superscript
-        
+
         # azimuthal quantum number, L. This becomes the letter symbol
-        
+
         # total angular momentum quantum number, J. This becomes the
         # subscript.
-    
+
 
 #%% full electron configurations
 
@@ -296,10 +304,11 @@ class ElectronConfiguration():
     """
     Object for describing the electron configuration of an atom/ion.
     """
-    
+
     def __init__(self):
         """
         """
+
     def __str__(self):
         """
         """
@@ -314,9 +323,11 @@ class ElectronConfiguration():
 class EnergyLevel():
     """
     """
+
     def __init__(self, electronConfiguration, termSymbol):
         """
         """
+
     def __str__(self):
         """
         """
