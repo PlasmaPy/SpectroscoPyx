@@ -137,10 +137,10 @@ xrayShellsDf = pd.DataFrame(data=principals, index=xrayNotation, columns=['n'])
 print(xrayShellsDf['n']['M'])
 
 
-symbols = ['s',
-           'p',
-           'd',
-           'f',
+symbols = ['s', # sharp
+           'p', # principal
+           'd', # diffuse
+           'f', # fundamental/fine
            'g',
            'h',
            'i',
