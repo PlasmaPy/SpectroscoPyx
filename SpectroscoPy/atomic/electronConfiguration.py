@@ -12,6 +12,7 @@ such as NIST.
 
 
 TODO:
+    -overload objects to give if empty behavior
     -include L-S coupling
     -include functions/methods without L-S coupling assumption
     -use subshellConfiguration() in electronConfiguration()
@@ -267,6 +268,18 @@ class SubshellConfiguration():
         if np.isnan(aziNum):
             aziNum = self.aziNum
         return 2 * (2 * aziNum + 1)
+    def str2obj(configStr):
+        """
+        Method for generating a subshell configuration from spectroscopic
+        notation string.
+        """
+        # split string into components
+        
+        # test that string is valid
+        
+        # generate subshell configuration object
+        subshellConfig = 
+        return subshellConfig
 
 
 # testing subshell class
@@ -288,13 +301,53 @@ class ElectronConfiguration():
     Object for describing the electron configuration of an atom/ion.
     """
 
-    def __init__(self):
+    def __init__(self, subshells):
         """
+        Initializes electron configuration using a list of 
+        SubshellConfiguration() objects. It is assumed that
+        any subshells which are not given are empty.
         """
+        # check that list has at least 1 element, if not
+        # create an empty configuration object representing a fully
+        # ionized particle
+        if not subshells:
+            # empty configuration
+        
+        # test that all objects in list are SubshellConfiguration()
+        # objects
+        
+        # test that there are no conflicting subshells, i.e., same
+        # principal and azimuthal quantum numbers
+        
 
     def __str__(self):
         """
         """
+    def str2obj(self):
+        """
+        Initialize an electron configuration using spectroscopic notation
+        string.
+        """
+        # break string into substrings, with each one representing
+        # a subshell configuration.
+        
+        # test that string is valid
+        
+        # combine subshell configurations to form full electron configuration.
+        
+        return configObj
+    def subshell(self, principalNum, aziNum):
+        """
+        Return SubhshellConfiguration() object for a particular subshell
+        corresponding to principal and azimuthal quantum numbers.
+        """
+        return
+    def empty():
+        """
+        Generate an empty configuration representing a fully ionized
+        particle.
+        """
+        return ElectronConfiguration([])
 
 
 #%% term symbol description
