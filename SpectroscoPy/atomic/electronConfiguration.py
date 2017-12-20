@@ -13,6 +13,12 @@ such as NIST.
 
 TODO:
     -include L-S coupling
+    -include functions/methods without L-S coupling assumption
+    -use subshellConfiguration() in electronConfiguration()
+    -use electronConfiguration() and termSymbol() for energyLevel()
+    -use 2 energyLevel() objects for transition() object
+    -Create system for managing/saving/converting list of transition() objs
+    -add tests for allowed/forbidden transitions
 
 @author: Pawel M. Kozlowski
 """
@@ -174,8 +180,6 @@ print(subshellsDf['l']['f'])
 print(subshellsDf['sym'][3])
 
 #%% subshell configurations
-
-
 class SubshellConfiguration():
     """
     Object for describing atomic subshells containing electrons.
@@ -272,27 +276,6 @@ testSubshell = SubshellConfiguration(principalNum=2,
 print(testSubshell)
 
 
-#%% term symbol
-
-class TermSymbol():
-    """
-    """
-
-    def __init__(self):
-        """
-        """
-
-    def __str__(self):
-        """
-        """
-        # spin state (e.g. doublet, triplet). This becomes the superscript
-
-        # azimuthal quantum number, L. This becomes the letter symbol
-
-        # total angular momentum quantum number, J. This becomes the
-        # subscript.
-
-
 #%% full electron configurations
 
 # One way to describe the electron configuration is as a collection of
@@ -316,6 +299,24 @@ class ElectronConfiguration():
 
 #%% term symbol description
 
+class TermSymbol():
+    """
+    """
+
+    def __init__(self):
+        """
+        """
+
+    def __str__(self):
+        """
+        """
+        # spin state (e.g. doublet, triplet). This becomes the superscript
+
+        # azimuthal quantum number, L. This becomes the letter symbol
+
+        # total angular momentum quantum number, J. This becomes the
+        # subscript.
+
 
 #%% full energy level description, this includes an electron configuration
 # and a term symbol
@@ -323,11 +324,32 @@ class ElectronConfiguration():
 class EnergyLevel():
     """
     """
-
     def __init__(self, electronConfiguration, termSymbol):
         """
         """
+        # initialize electron configuration
+        self.electronConfiguration = electronConfiguration
+        # initialize term symbol
+        self.termSymbol = termSymbol
 
     def __str__(self):
         """
+        String representation of enery level. This is just the string
+        representations of the electron configuration and term symbol.
         """
+        # fetching electron configuration and term symbol strings.
+        configStr = self.electronConfiguration.__str__()
+        termStr = self.termSymbol.__str__()
+        # concatenating
+        energyStr = configStr + ' ' + termStr
+        return energyStr
+    def configuration(self):
+        """
+        Returns full electron configuration.
+        """
+        return self.electronConfiguration
+    def term(self):
+        """
+        Returns term symbol.
+        """
+        return self.termSymbol
