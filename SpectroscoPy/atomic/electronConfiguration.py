@@ -12,7 +12,8 @@ such as NIST.
 
 
 TODO:
-    -overload objects to give if empty behavior
+    -add square bracket functionality NIST
+    - __bool__ behavior for configurations, terms, energies, etc
     -include L-S coupling
     -include functions/methods without L-S coupling assumption
     -use subshellConfiguration() in electronConfiguration()
@@ -210,7 +211,6 @@ class SubshellConfiguration():
                              f"which is more than maximum, {maxElectrons}.")
         # assign electrons
         self.electrons = electronsNum
-
     def n(self):
         """
         return principal quantum number.
@@ -228,7 +228,6 @@ class SubshellConfiguration():
         return number of electrons in subshell.
         """
         return self.electrons
-
     def __str__(self):
         """
         Displays subshell configuration in standard spectroscopic notation.
@@ -241,7 +240,18 @@ class SubshellConfiguration():
         # concatenating
         subshellSym = principalSym + aziSym + electronsSym
         return subshellSym
-
+    def __eq__(self, other):
+        """
+        Test if 2 subshell configurations are identical.
+        """
+        # check if other is a SubshellConfigration() object
+        if not isinstance(other, SubshellConfiguration):
+            raise ValueError(f"{other} is not a SubshellConfiguration().")
+        principalEq = self.n() == other.n()
+        aziEq = self.l() == other.l()
+        electronsEq = self.elec() == other.elec()
+        totalEq = principalEq and aziEq and electronsEq
+        return totalEq
     def existsSubshell(self, principal=np.nan, aziNum=np.nan):
         """
         Checks if azimuthal quantum number (subshell) exists within the
@@ -258,14 +268,14 @@ class SubshellConfiguration():
                              f"for principal quantum number {principal}.")
         return
 
-    def subshellElectrons(self, aziNum=np.nan):
+    def subshellElectrons(self, aziNum=None):
         """
         Given azimuthal quantum number, return maximum number of electrons
         in the subshell.
         Symbol for azimuthal quantum number is lowercase, cursive L.
         """
         # if parameters aren't passed then use parameters given in object
-        if np.isnan(aziNum):
+        if aziNum == None:
             aziNum = self.aziNum
         return 2 * (2 * aziNum + 1)
     def str2obj(configStr):
@@ -307,11 +317,10 @@ class ElectronConfiguration():
         SubshellConfiguration() objects. It is assumed that
         any subshells which are not given are empty.
         """
-        # check that list has at least 1 element, if not
-        # create an empty configuration object representing a fully
-        # ionized particle
-        if not subshells:
-            # empty configuration
+        # test that subshells is a list or numpy array
+        
+        # convert subshells into a numpy array if it is a list
+        
         
         # test that all objects in list are SubshellConfiguration()
         # objects
@@ -319,9 +328,41 @@ class ElectronConfiguration():
         # test that there are no conflicting subshells, i.e., same
         # principal and azimuthal quantum numbers
         
-
+        # drop any empty subshells from the list
+        
+        # organize the list of subshells according to principal
+        # quantum number and azimuthal number
+        subshellsOrdered = 
+        
+        # if an empty list is passed then an empty configuration object 
+        # is created. This represents a fully ionized particle
+        self.subshells = subshellsOrdered
+    def __eq__(self, other):
+        """
+        Check if 2 electron configurations are equal. This is done
+        by checking if lists of subshells are equal.
+        """
+        # test if argument is an ElectronConfiguration()
+        if not isinstance(other, ElectronConfiguration):
+            raise ValueError(f"{other} is not an ElectronConfiguration().")
+        # test equivalence of subshells
+        eq = (other.subshells == self.subshells).all()
+        return eq
+    def __bool__(self):
+        """
+        Method for determining if class value is True or False.
+        ElectronConfigration() is False when it is empty, and True when
+        there is at least one subshell.
+        """
+        # since subshells is a list which describes the configuration, when
+        # the list is empty then the configuration is False.
+        return bool(self.subshells)
     def __str__(self):
         """
+        An electron configuration consists of an ordered list of subshell
+        configurations.
+        !!!May also include quantities in square brackets, but still
+        need to figure out what those mean!!!
         """
     def str2obj(self):
         """
@@ -348,6 +389,7 @@ class ElectronConfiguration():
         particle.
         """
         return ElectronConfiguration([])
+    
 
 
 #%% term symbol description
