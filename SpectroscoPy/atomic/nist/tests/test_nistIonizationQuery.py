@@ -19,11 +19,13 @@ from .. import nistIonizationQuery as niq
 
 class Test_nistIonizationQuery(object):
     """Testing NIST ionization query functions"""
+
     def setup_method(self):
         """ Setting up for the test """
-        ## Set element, charge state, and temperature
+        # Set element, charge state, and temperature
         self.element = 'Na'
         self.chargeState = 3
+
     def test_queryEnergy(self):
         """Test ionization energy query"""
         energy, uncert, dataType = niq.nistIonEnergyQuery(self.element,
@@ -32,7 +34,7 @@ class Test_nistIonizationQuery(object):
                              uncert.value])
         queryExpect = np.array([9.8936e1,
                                 1.2e-2])
-        testTrue = np.allclose(queryVal, 
+        testTrue = np.allclose(queryVal,
                                queryExpect,
                                rtol=1e-3,
                                atol=0)

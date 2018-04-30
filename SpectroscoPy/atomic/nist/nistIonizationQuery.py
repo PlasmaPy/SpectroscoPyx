@@ -27,6 +27,7 @@ import numpy as np
 import astropy.units as u
 import mendeleev as lev
 
+
 def cleanhtml(raw_html):
     """
     Cleaning HTML tags using regular expressions
@@ -34,6 +35,7 @@ def cleanhtml(raw_html):
     cleanr = re.compile('<.*?>')
     cleantext = re.sub(cleanr, '', raw_html)
     return cleantext
+
 
 # URL to nist ionization energy database
 nistIonizationURL1 = 'https://physics.nist.gov/PhysRefData/ASD/ionEnergy.html'
@@ -48,16 +50,17 @@ if reqObj.status_code == req.codes.ok:
 else:
     print("CONNECTION FAILED!")
 reqObj.raise_for_status()
-    
+
 # for testing purposes only
-#print("HEADERS:")
-#print(reqObj.headers['content-type'])
-#print("ENCODING:")
-#print(reqObj.encoding)
-#print("TEXT:")
-#print(reqObj.text)
+# print("HEADERS:")
+# print(reqObj.headers['content-type'])
+# print("ENCODING:")
+# print(reqObj.encoding)
+# print("TEXT:")
+# print(reqObj.text)
 
 #%% NIST levels
+
 
 def nistIonEnergiesQuery(element):
     """
@@ -77,23 +80,23 @@ def nistIonEnergiesQuery(element):
     # Starting requests session
     with req.session() as s:
         # values to be filled into website form
-        payload = {'spectra': elementCharge, # element and charge state
+        payload = {'spectra': elementCharge,  # element and charge state
                    'submit': 'Retrieve Data',
-                   'units': '1', # selects energy units eV
-                   'format': '1', # ASCII output
-                   'order': '0', # order by Z or sequence
-                   'at_num_out': 'on', # output atomic number
-                   'sp_name_out': 'on', # output spectrum name
-                   'ion_charge_out': 'on', # output ion charge
-                   'el_name_out': 'on', # output element name
-                   'seq_out': 'on', # output isoelectronic sequence
-                   'shells_out': 'on', # output ground-state electronic shells
-                   'conf_out': 'on', # outpuse ground-state configuration
-                   'level_out': 'on', # output ground-state level
-                   'ion_conf_out': 'on', # output ionization configuration
-                   'e_out': '0', # selects ionization energy not binding
-                   'unc_out': 'on', # output uncertainty
-                   'biblio': 'on' # output bibliographic references
+                   'units': '1',  # selects energy units eV
+                   'format': '1',  # ASCII output
+                   'order': '0',  # order by Z or sequence
+                   'at_num_out': 'on',  # output atomic number
+                   'sp_name_out': 'on',  # output spectrum name
+                   'ion_charge_out': 'on',  # output ion charge
+                   'el_name_out': 'on',  # output element name
+                   'seq_out': 'on',  # output isoelectronic sequence
+                   'shells_out': 'on',  # output ground-state electronic shells
+                   'conf_out': 'on',  # outpuse ground-state configuration
+                   'level_out': 'on',  # output ground-state level
+                   'ion_conf_out': 'on',  # output ionization configuration
+                   'e_out': '0',  # selects ionization energy not binding
+                   'unc_out': 'on',  # output uncertainty
+                   'biblio': 'on'  # output bibliographic references
                    }
         # website's repsonse to query
         response = s.post(nistIonizationURL2, data=payload)
@@ -117,12 +120,12 @@ def nistIonEnergiesQuery(element):
     header = 4
     footer = -1
     tableLinesShort = tableLines[header:footer]
-    
+
     searchStringRow = "{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}</a>"
     # could get rid of this footer if we had a dictionary or similar of
     # element info on possible charge states (equivalently number of electrons
     # in the neutral atom).
-    
+
     elementObj = lev.element(element)
     chargeStatesNum = elementObj.atomic_number
 #    print(f"number of charge states is {chargeStatesNum}")
@@ -131,8 +134,8 @@ def nistIonEnergiesQuery(element):
     energyTypeArr = np.empty((chargeStatesNum), dtype=object)
 #    print(energiesArr)
     for chargeState in np.arange(chargeStatesNum):
-#        print(f"####Charge state is {chargeState}####")
-#        print(tableLinesShort[chargeState])
+        #        print(f"####Charge state is {chargeState}####")
+        #        print(tableLinesShort[chargeState])
         parsedRow = parse.search(searchStringRow, tableLinesShort[chargeState])
         (atNum,     # atomic number
          spName,     # species name
@@ -144,21 +147,20 @@ def nistIonEnergiesQuery(element):
          gndLevel,     # ground level
          ionLevel,     # ionized level
          ionEnergyHTML,     # ionization energy (eV)
-         uncertainty, # uncertainty in the ionization energy (eV)
+         uncertainty,  # uncertainty in the ionization energy (eV)
          refs    # references
          ) = [entry.strip() for entry in parsedRow]
     #    boom = [entry.strip() for entry in parsedRow]
-        
-        
+
         # further parsing to get at ionization energy and uncertainty
         ionEnergyStrip = cleanhtml(ionEnergyHTML)
-        
+
         # test if value is measured, interpolated/extrapolated, or
         # if it is purely theoretical (nothing, square brackets, or parens)
     #    print(ionEnergyStrip)
         if ionEnergyStrip[0].isdigit():
             energyType = 'Measured'
-            ionEnergyStr =  ionEnergyStrip
+            ionEnergyStr = ionEnergyStrip
         elif ionEnergyStrip[0] == '[':
             energyType = 'Interpolated/extrapolated'
             ionEnergyStr = ionEnergyStrip[1:-1]
@@ -167,24 +169,25 @@ def nistIonEnergiesQuery(element):
             ionEnergyStr = ionEnergyStrip[1:-1]
         else:
             raise Exception('Something went wrong. String not parsed!')
-    
+
     #    print(ionEnergyStr)
     #    print(uncertainty)
         # converting extracted strings to floats and adding units
         ionEnergy = float(ionEnergyStr)
         ionEnergyUnc = float(uncertainty)
-        
+
         # record results into array
         energiesArr[chargeState] = ionEnergy
         uncertaintiesArr[chargeState] = ionEnergyUnc
         energyTypeArr[chargeState] = energyType
-        
+
     # adding units
 #    print(energiesArr)
     energiesArr = energiesArr * u.eV
     uncertaintiesArr = uncertaintiesArr * u.eV
 
     return energiesArr, uncertaintiesArr, energyTypeArr
+
 
 def nistIonEnergyQuery(element, chargeState):
     """
@@ -216,23 +219,23 @@ def nistIonEnergyQuery(element, chargeState):
     # Starting requests session
     with req.session() as s:
         # values to be filled into website form
-        payload = {'spectra': elementCharge, # element and charge state
+        payload = {'spectra': elementCharge,  # element and charge state
                    'submit': 'Retrieve Data',
-                   'units': '1', # selects energy units eV
-                   'format': '1', # ASCII output
-                   'order': '0', # order by Z or sequence
-                   'at_num_out': 'on', # output atomic number
-                   'sp_name_out': 'on', # output spectrum name
-                   'ion_charge_out': 'on', # output ion charge
-                   'el_name_out': 'on', # output element name
-                   'seq_out': 'on', # output isoelectronic sequence
-                   'shells_out': 'on', # output ground-state electronic shells
-                   'conf_out': 'on', # outpuse ground-state configuration
-                   'level_out': 'on', # output ground-state level
-                   'ion_conf_out': 'on', # output ionization configuration
-                   'e_out': '0', # selects ionization energy not binding
-                   'unc_out': 'on', # output uncertainty
-                   'biblio': 'on' # output bibliographic references
+                   'units': '1',  # selects energy units eV
+                   'format': '1',  # ASCII output
+                   'order': '0',  # order by Z or sequence
+                   'at_num_out': 'on',  # output atomic number
+                   'sp_name_out': 'on',  # output spectrum name
+                   'ion_charge_out': 'on',  # output ion charge
+                   'el_name_out': 'on',  # output element name
+                   'seq_out': 'on',  # output isoelectronic sequence
+                   'shells_out': 'on',  # output ground-state electronic shells
+                   'conf_out': 'on',  # outpuse ground-state configuration
+                   'level_out': 'on',  # output ground-state level
+                   'ion_conf_out': 'on',  # output ionization configuration
+                   'e_out': '0',  # selects ionization energy not binding
+                   'unc_out': 'on',  # output uncertainty
+                   'biblio': 'on'  # output bibliographic references
                    }
         # website's repsonse to query
         response = s.post(nistIonizationURL2, data=payload)
@@ -256,16 +259,15 @@ def nistIonEnergyQuery(element, chargeState):
     header = 4
     footer = -1
     tableLinesShort = tableLines[header:footer]
-    
+
     # Here is where we can add a temporary storage for the queried
     # table so that the query doesn't have to be done multiple times
     # It may be worth splitting the function here into multiple functions.
     # One that grabs the table and another that parses it.
-    
-    
+
     # Each row has 10 columns of data
     searchStringRow = "{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}</a>"
-    parsedRow = parse.search(searchStringRow, tableLinesShort[chargeState-0])
+    parsedRow = parse.search(searchStringRow, tableLinesShort[chargeState - 0])
     (atNum,     # atomic number
      spName,     # species name
      ionCharge,     # ion charge
@@ -276,21 +278,20 @@ def nistIonEnergyQuery(element, chargeState):
      gndLevel,     # ground level
      ionLevel,     # ionized level
      ionEnergyHTML,     # ionization energy (eV)
-     uncertainty, # uncertainty in the ionization energy (eV)
+     uncertainty,  # uncertainty in the ionization energy (eV)
      refs    # references
      ) = [entry.strip() for entry in parsedRow]
 #    boom = [entry.strip() for entry in parsedRow]
-    
-    
+
     # further parsing to get at ionization energy and uncertainty
     ionEnergyStrip = cleanhtml(ionEnergyHTML)
-    
+
     # test if value is measured, interpolated/extrapolated, or
     # if it is purely theoretical (nothing, square brackets, or parens)
 #    print(ionEnergyStrip)
     if ionEnergyStrip[0].isdigit():
         energyType = 'Measured'
-        ionEnergyStr =  ionEnergyStrip
+        ionEnergyStr = ionEnergyStrip
     elif ionEnergyStrip[0] == '[':
         energyType = 'Interpolated/extrapolated'
         ionEnergyStr = ionEnergyStrip[1:-1]
