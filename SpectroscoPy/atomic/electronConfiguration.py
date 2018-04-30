@@ -16,11 +16,12 @@ TODO:
     - __bool__ behavior for configurations, terms, energies, etc
     -include L-S coupling
     -include functions/methods without L-S coupling assumption
+    -include jj coupling scheme methods
     -use subshellConfiguration() in electronConfiguration()
     -use electronConfiguration() and termSymbol() for energyLevel()
     -use 2 energyLevel() objects for transition() object
     -Create system for managing/saving/converting list of transition() objs
-    -add tests for allowed/forbidden transitions
+    -add "selection rules" tests for allowed/forbidden transitions
 
 @author: Pawel M. Kozlowski
 """
@@ -389,6 +390,21 @@ class ElectronConfiguration():
         particle.
         """
         return ElectronConfiguration([])
+    def unpaired(self):
+        """
+        Returns the number of unpaired electrons.
+        """
+    def multiplicity(self):
+        """
+        Spin multiplicity, calculated based on the number of unpaired
+        electrons. 
+        """
+    def multiplet(self):
+        """
+        Returns whether the configuration is in a singlet, doublet, triplet,
+        etc. state based on the multiplicty and limitations on the number
+        of spin orientations, when S <= L.
+        """
     
 
 
