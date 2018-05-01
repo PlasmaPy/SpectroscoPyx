@@ -1,0 +1,39 @@
+deps-run: &deps-install
+  name: Install Python dependencies and SpectroscoPyx
+  command: |
+    pip install --user -r requirements/automated-documentation-tests.txt | cat
+    pip install --user . | cat
+
+html-run: &doc-html
+  name: Build HTML documentation
+  command: python setup.py build_docs -w
+
+latex-run: &doc-latex
+  name: Build LaTeX documentation
+  command: |
+    make latexpdf 2>/tmp/TexError 1>/dev/null -w
+    cat /tmp/TexError
+  working_directory: docs
+
+version: 2
+jobs:
+  test-html:
+    docker:
+      - image: SpectroscoPyx/documentation-builder:latest
+    steps:
+      - checkout
+      - run: *deps-install
+      - run: *doc-html
+      - store_artifacts:
+          path: docs/_build/html
+      - run: *doc-latex
+
+workflows:
+  version: 2
+  test-documentation:
+    jobs:
+      - test-html
+
+notify:
+  webhooks:
+    - url: https://giles.cadair.com/circleci
