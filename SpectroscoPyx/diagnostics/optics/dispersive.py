@@ -16,10 +16,10 @@ def bragg_angle(d_lattice, wavelength, order=1):
     ----------
     d_lattice: Quantity
         Interlattice spacing of the Bragg diffraction crystal.
-        
+
     wavelength: Quantity
         Wavelength of photon being diffracted.
-    
+
     order: Quantity, int
         Diffraction order. Defaults to first order diffraction
 
@@ -52,7 +52,7 @@ def bragg_angle(d_lattice, wavelength, order=1):
 
     See also
     --------
-    
+
 
     Example
     -------
@@ -61,7 +61,7 @@ def bragg_angle(d_lattice, wavelength, order=1):
     >>> d_lattice = 0.6708 / 2 * u.nm
     >>> bragg_angle(d_lattice, wavelength)
     <Quantity 0.67439747 rad>
-    
+
 
     """
     theta = np.arcsin(order * wavelength / (2 * d_lattice))
