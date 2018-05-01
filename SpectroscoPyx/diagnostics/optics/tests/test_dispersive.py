@@ -4,16 +4,19 @@ import numpy as np
 import pytest
 from astropy import units as u
 
-from ....constants import (m_p, m_e, c, mu0, k_B, e, eps0, pi)
-from ..dispersive import (bragg_angle,
-                          )
+from SpectroscoPyx.constants import (m_p, m_e, c, mu0, k_B, e, eps0, pi)
+from SpectroscoPyx.diagnostics.optics.dispersive import (bragg_angle,
+                                                         )
 
 # test class for bragg_angle function:
+
+
 class Test_bragg_angle(object):
     def setup_method(self):
         """initializing parameters for tests """
-        self.d_lattice = 0.6708 / 2 * u.nm # HOPG spacing
+        self.d_lattice = 0.6708 / 2 * u.nm  # HOPG spacing
         self.wavelength = 4.188655 * u.angstrom
+
     def test_typical_angle(self):
         """
         Checks whether function returns expected value for a typical
@@ -25,7 +28,7 @@ class Test_bragg_angle(object):
                             order=1)
         errStr = (f"Bragg angle should be {angleTrue} "
                   f"and not {angle}.")
-        assert np.isclose(angle.value, 
+        assert np.isclose(angle.value,
                           angleTrue.value,
                           rtol=1e-8,
                           atol=0.0), errStr
