@@ -5,7 +5,7 @@ Dispersive elements used to separate light into its constituent wavelengths
 import astropy.units as u
 from astropy.units import (UnitConversionError, UnitsError, quantity_input,
                            Quantity)
-from ...constants import (m_p, m_e, c, mu0, k_B, e, eps0, pi)
+from SpectroscoPyx.constants import (m_p, m_e, c, mu0, k_B, e, eps0, pi)
 import numpy as np
 
 
@@ -60,7 +60,7 @@ def bragg_angle(d_lattice, wavelength, order=1):
     >>> wavelength = 4.188655 * u.angstrom
     >>> d_lattice = 0.6708 / 2 * u.nm
     >>> bragg_angle(d_lattice, wavelength)
-    <Quantity 0.6743974698099433 rad>
+    <Quantity 0.67439747 rad>
     
 
     """

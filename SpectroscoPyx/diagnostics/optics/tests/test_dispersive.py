@@ -4,9 +4,9 @@ import numpy as np
 import pytest
 from astropy import units as u
 
-from ....constants import (m_p, m_e, c, mu0, k_B, e, eps0, pi)
-from ..dispersive import (bragg_angle,
-                          )
+from SpectroscoPyx.constants import (m_p, m_e, c, mu0, k_B, e, eps0, pi)
+from SpectroscoPyx.diagnostics.optics.dispersive import (bragg_angle,
+                                                         )
 
 # test class for bragg_angle function:
 class Test_bragg_angle(object):
@@ -19,7 +19,7 @@ class Test_bragg_angle(object):
         Checks whether function returns expected value for a typical
         crystal and photon configuration.
         """
-        angleTrue = 0.6743974698099433 * u.rad
+        angleTrue = 0.67439747 * u.rad
         angle = bragg_angle(d_lattice=self.d_lattice,
                             wavelength=self.wavelength,
                             order=1)
