@@ -19,7 +19,7 @@ version: 2
 jobs:
   test-html:
     docker:
-      - image: SpectroscoPyx/documentation-builder:latest
+      - image: spectroscopyx/documentation-builder:latest
     steps:
       - checkout
       - run: *deps-install
