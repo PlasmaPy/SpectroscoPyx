@@ -19,7 +19,7 @@ class Test_bragg_angle(object):
         Checks whether function returns expected value for a typical
         crystal and photon configuration.
         """
-        angleTrue = 0.6743974698099433 * u.rad
+        angleTrue = 0.67439747 * u.rad
         angle = bragg_angle(d_lattice=self.d_lattice,
                             wavelength=self.wavelength,
                             order=1)
