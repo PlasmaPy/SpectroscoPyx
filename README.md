@@ -6,6 +6,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/PlasmaPy/SpectroscoPyx/badge.svg?branch=master)](https://coveralls.io/github/PlasmaPy/SpectroscoPyx?branch=master)
 [![Matrix](https://matrix.to/img/matrix-badge.svg)](https://riot.im/app/#/room/#plasmapy:matrix.org)
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/PlasmaPy/Lobby)
+[![Powered by Astropy](http://img.shields.io/badge/powered%20by-AstroPy-orange.svg?style=flat)](http://www.astropy.org)
 
 An open source community developed Python 3.6+ package for spectroscopy in the early stages of development. The focus is on atomic spectroscopy with applications for plasma spectroscopy. SpectroscoPyx intends to be for spectroscopy what
 [Astropy](https://github.com/astropy/astropy) is for astronomy - a 
