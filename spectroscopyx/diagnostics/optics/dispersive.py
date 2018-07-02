@@ -5,7 +5,7 @@ Dispersive elements used to separate light into its constituent wavelengths
 import astropy.units as u
 from astropy.units import (UnitConversionError, UnitsError, quantity_input,
                            Quantity)
-from SpectroscoPyx.constants import (m_p, m_e, c, mu0, k_B, e, eps0, pi)
+from spectroscopyx.constants import (m_p, m_e, c, mu0, k_B, e, eps0, pi)
 import numpy as np
 
 

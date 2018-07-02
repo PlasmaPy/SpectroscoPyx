@@ -3,9 +3,9 @@ include README.md
 include ez_setup.py
 include ah_bootstrap.py
 include setup.cfg
-include SpectroscoPyx/tests/coveragerc
+include spectroscopyx/tests/coveragerc
 
-recursive-include SpectroscoPyx *.pyx *.c *.pxd
+recursive-include spectroscopyx *.pyx *.c *.pxd
 recursive-include docs *
 recursive-include licenses *
 recursive-include cextern *
