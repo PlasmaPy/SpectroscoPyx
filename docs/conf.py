@@ -169,8 +169,6 @@ texinfo_documents = [
      'Miscellaneous'),
 ]
 
-html_favicon = "./_static/icon.ico"
-
 # -- Options for Sphinx Gallery -----------------
 
 sphinx_gallery_conf = {
