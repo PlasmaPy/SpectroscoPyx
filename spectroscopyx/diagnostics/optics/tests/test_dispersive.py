@@ -4,8 +4,8 @@ import numpy as np
 import pytest
 from astropy import units as u
 
-from SpectroscoPyx.constants import (m_p, m_e, c, mu0, k_B, e, eps0, pi)
-from SpectroscoPyx.diagnostics.optics.dispersive import (bragg_angle,
+from spectroscopyx.constants import (m_p, m_e, c, mu0, k_B, e, eps0, pi)
+from spectroscopyx.diagnostics.optics.dispersive import (bragg_angle,
                                                          )
 
 # test class for bragg_angle function:
