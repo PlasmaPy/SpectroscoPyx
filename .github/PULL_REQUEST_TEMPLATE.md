@@ -1,4 +1,4 @@
-Hello, thanks for contributing to SpectroscoPy!
+Hello, thanks for contributing to SpectroscoPyx!
 
 If you're contributing changes to solve an issue tracked by GitHub, please add a phrase like:
 
