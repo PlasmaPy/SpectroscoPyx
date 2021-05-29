@@ -1,12 +1,15 @@
 # SpectroscoPyx
+
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](./LICENSE.md)
-[![Build Status](https://travis-ci.org/PlasmaPy/SpectroscoPyx.svg?branch=master)](https://travis-ci.org/PlasmaPy/SpectroscoPyx)
+[![Build Status](https://travis-ci.org/PlasmaPy/SpectroscoPyx.svg?branch=main)](https://travis-ci.org/PlasmaPy/SpectroscoPyx)
 [![Build status](https://ci.appveyor.com/api/projects/status/kn381ct1l63oly48?svg=true)](https://ci.appveyor.com/project/lemmatum/spectroscopyx)
 [![Documentation Status](https://readthedocs.org/projects/plasmapy/badge/?version=latest)](http://spectroscopyx.readthedocs.io/en/latest/?badge=latest)
-[![Coverage Status](https://coveralls.io/repos/github/PlasmaPy/SpectroscoPyx/badge.svg?branch=master)](https://coveralls.io/github/PlasmaPy/SpectroscoPyx?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/PlasmaPy/SpectroscoPyx/badge.svg?branch=main)](https://coveralls.io/github/PlasmaPy/SpectroscoPyx?branch=main)
 [![Matrix](https://matrix.to/img/matrix-badge.svg)](https://riot.im/app/#/room/#plasmapy:matrix.org)
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/PlasmaPy/Lobby)
 [![Powered by Astropy](http://img.shields.io/badge/powered%20by-AstroPy-orange.svg?style=flat)](http://www.astropy.org)
+
+**Note: development on SpectroscoPyx is currently suspended.**
 
 An open source community developed Python 3.6+ package for spectroscopy in the early stages of development. The focus is on atomic spectroscopy with applications for plasma spectroscopy. SpectroscoPyx intends to be for spectroscopy what
 [Astropy](https://github.com/astropy/astropy) is for astronomy - a 

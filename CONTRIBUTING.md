@@ -224,7 +224,7 @@ git fetch upstream
 ```
 
 Changes to SpectroscoPyx should be made using branches.  It is usually best
-to avoid making changes on your master branch so that it can be kept
+to avoid making changes on your main branch so that it can be kept
 consistent with the upstream repository.  Instead we can create a new
 branch for the specific feature that you would like to work on:
 
@@ -262,7 +262,7 @@ computing](https://doi.org/10.1371/journal.pbio.1001745).  SpectroscoPyx
 uses the [PEP 8 style guide for Python
 code](https://www.python.org/dev/peps/pep-0008/) and the [numpydoc
 format for
-docstrings](https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt)
+docstrings](https://github.com/numpy/numpy/blob/main/doc/HOWTO_DOCUMENT.rst.txt)
 to maintain consistency and readability.  New contributors should not 
 worry too much about precisely matching these styles when first 
 submitting a pull request, as the [PEP8 Speaks](http://pep8speaks.com/)
