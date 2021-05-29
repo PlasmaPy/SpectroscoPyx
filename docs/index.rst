@@ -1,8 +1,12 @@
 SpectroscoPyx Documentation
 ===========================
 
+.. warning::
+
+   Development on SpectroscoPyx has been suspended.
+
 SpectroscoPyx is an open source community-developed core Python package for
-spectroscopyx.
+spectroscopy.
 
 .. toctree::
   :maxdepth: 2
